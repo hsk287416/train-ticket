@@ -187,9 +187,9 @@ module.exports = function(webpackEnv) {
     // This means they will be the "root" imports that are included in JS bundle.
     entry: {
       home: getEntry(paths.appHomeJs, isEnvDevelopment),
-      order: getEntry(paths.appHomeJs, isEnvDevelopment),
-      query: getEntry(paths.appHomeJs, isEnvDevelopment),
-      ticket: getEntry(paths.appHomeJs, isEnvDevelopment),
+      order: getEntry(paths.appOrderJs, isEnvDevelopment),
+      query: getEntry(paths.appQueryJs, isEnvDevelopment),
+      ticket: getEntry(paths.appTicketJs, isEnvDevelopment),
     },
     output: {
       // The build folder.
