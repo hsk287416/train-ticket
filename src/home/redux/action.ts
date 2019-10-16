@@ -65,14 +65,9 @@ export const hideCitySelector = () => {
 }
 
 export const setSelectedCity = (city: string) => {
-    return (dispatch: Dispatch, getState: any) => {
-        const { currentSelectingLeftCity } = getState();
-        if (currentSelectingLeftCity) {
-            dispatch(setForm(city));
-        } else {
-            dispatch(setTo(city));
-        }
-        dispatch(hideCitySelector());
+    return {
+        type: SET_SELECTED_CITY,
+        payload: city,
     }
 }
 
