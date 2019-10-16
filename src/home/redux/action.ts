@@ -12,6 +12,7 @@ export const TOOGLE_DATE_SELECTOR = 'TOOGLE_DATE_SELECTOR';
 export const EXCHANGE_FROM_TO = 'EXCHANGE_FROM_TO';
 export const SET_DEPART_DATE = 'SET_DEPART_DATE';
 export const REQUEST_CITY_DATA = 'REQUEST_CITY_DATA';
+export const SHOW_CITY_SELECTOR = 'SHOW_CITY_SELECTOR';
 
 
 export const setForm = (value: string) => {
@@ -49,16 +50,10 @@ export const toggleHighSpeed = (value: boolean) => {
     }
 }
 
-export const showCitySelector = (currentSelectingLeftCity: boolean) => {
-    return (dispatch: Dispatch) => {
-        dispatch({
-            type: SET_IS_CITY_SELECTOR_VISIBLE,
-            payload: true,
-        });
-        dispatch({
-            type: SET_CURRENT_SELECTING_LEFT_CITY,
-            payload: currentSelectingLeftCity,
-        })
+export const showCitySelector = (currentSelectingLeftCity: boolean)=> {
+    return {
+        type: SHOW_CITY_SELECTOR,
+        payload: currentSelectingLeftCity
     }
 }
 
@@ -88,11 +83,9 @@ export const toggleDateSelector = (value: boolean) => {
     }
 }
 
-export const exchangeFromTo = () => {
-    return (dispatch: Dispatch, getState: any) => {
-        const { from, to } = getState();
-        dispatch(setForm(to));
-        dispatch(setTo(from));
+export const exchangeFromTo = (): any => {
+    return {
+        type: EXCHANGE_FROM_TO,
     }
 }
 
