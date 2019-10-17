@@ -11,7 +11,7 @@ const CitySection: React.FC<ICitySectionProps> = (props: ICitySectionProps) => {
     } = props;
     return (
         <ul className="city-ul">
-            <li className="city-li">{title}</li>
+            <li className="city-li" data-cate={title}>{title}</li>
             {
                 cities.map((city: any) => {
                     return <CityItem key={city.name} name={city.name} onSelect={onSelect}/>

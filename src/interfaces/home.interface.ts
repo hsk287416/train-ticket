@@ -6,6 +6,6 @@ export interface IHome {
     cityData: any;
     isLoadingCityData: boolean;
     isDateSelectorVisible: boolean;
-    departDate: number;
+    departDate: any;
     highSpeed: boolean;
 }

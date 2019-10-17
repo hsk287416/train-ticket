@@ -84,7 +84,7 @@ export const exchangeFromTo = (): any => {
     }
 }
 
-export const setDepartDate = (departDate: number) => {
+export const setDepartDate = (departDate: any) => {
     return {
         type: SET_DEPART_DATE,
         payload: departDate,

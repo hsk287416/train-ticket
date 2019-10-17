@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, createRef, memo } from 'react';
+import React, { useState, useMemo, useEffect, createRef, memo, useCallback } from 'react';
 import './CitySelector.css'
 import { ICitySelectorProps } from '../../interfaces/city-selector-props.interface';
 import CityList from '../city-list/CityList';
@@ -30,13 +30,20 @@ export const CitySelector: React.FC<ICitySelectorProps> = (props: ICitySelectorP
         loadCityData();
     }, [show, cityData, isLoading]);
 
+    const toAlpha = useCallback((alpha: string) => {
+        const ele: Element | null = document.querySelector(`[data-cate='${alpha}']`);
+        if (ele) {
+            ele.scrollIntoView();
+        }
+    }, []);
+
     const outputCitySections = () => {
         if (isLoading) {
             return <div>loading</div>
         }
         if (cityData) {
             return (
-                <CityList sections={cityData.cityList} onSelect={onSelect}/>
+                <CityList sections={cityData.cityList} onSelect={onSelect} toAlpha={toAlpha}/>
             )
         }
         return <div>error</div>

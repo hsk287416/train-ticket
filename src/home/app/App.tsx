@@ -10,6 +10,8 @@ import { Dispatch } from 'redux';
 import * as homeActions from '../redux/action';
 import { IHome } from '../../interfaces/home.interface';
 import CitySelector from '../../common/city-selector/CitySelector';
+import DateSelector from '../../common/date-selector/DateSelector';
+import * as dateUtils from '../../functions/date-utils.func';
 
 const App: React.FC<any> = (props: any) => {
   const {
@@ -18,7 +20,9 @@ const App: React.FC<any> = (props: any) => {
     isCitySelectorVisible,
     cityData,
     isLoadingCityData,
-    setSelectedCity
+    setSelectedCity,
+    departDate,
+    isDateSelectorVisible,
   } = props;
 
   const onBack = useCallback(() => {
@@ -29,7 +33,18 @@ const App: React.FC<any> = (props: any) => {
   const showCitySelector = useCallback(props.showCitySelector, []);
   const hidenCitySelector = useCallback(props.hidenCitySelector, []);
   const loadCityData = useCallback(props.loadCityData, []);
-
+  const showDateSelector = useCallback(props.showDateSelector, []);
+  const hideDateSelector = useCallback(props.hideDateSelector, []);
+  const setDepartDate = useCallback((day: any) => {
+    if (!day) {
+      return;
+    }
+    if (day < dateUtils.clearTime()) {
+      return;
+    }
+    props.setDepartDate(day);
+    hideDateSelector();
+  }, []);
 
   return (
     <div>
@@ -38,7 +53,7 @@ const App: React.FC<any> = (props: any) => {
       </div>
       <form className="form">
         <Journey from={from} to={to} exchangeFromTo={exchangeFromTo} showCitySelector={showCitySelector}></Journey>
-        <DepartDate></DepartDate>
+        <DepartDate time={departDate} onClick={showDateSelector}></DepartDate>
         <HighSpeed></HighSpeed>
         <Submit></Submit>
       </form>
@@ -46,8 +61,11 @@ const App: React.FC<any> = (props: any) => {
         cityData={cityData}
         isLoading={isLoadingCityData}
         onBack={hidenCitySelector}
-        loadCityData={loadCityData} 
+        loadCityData={loadCityData}
         onSelect={setSelectedCity} />
+      <DateSelector show={isDateSelectorVisible}
+        onBack={hideDateSelector} 
+        onSelect={setDepartDate}/>
     </div>
   );
 }
@@ -74,6 +92,15 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
   setSelectedCity: (city: string) => {
     dispatch(homeActions.setSelectedCity(city))
+  },
+  showDateSelector: () => {
+    dispatch(homeActions.toggleDateSelector(true))
+  },
+  hideDateSelector: () => {
+    dispatch(homeActions.toggleDateSelector(false))
+  },
+  setDepartDate: (date: any) => {
+    dispatch(homeActions.setDepartDate(date));
   }
 })
 
