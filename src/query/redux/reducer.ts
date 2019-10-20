@@ -95,12 +95,14 @@ const queryReducer: Reducer<IQuery, AnyAction> = (state: IQuery = initialState, 
         case queryActions.CHANGE_VALUE:
             const { target, value } = action.payload;
             newState[target] = value;
+            break;
         case queryActions.CHANGE_VALUE_LIST:
             const itemList = action.payload.list as IChangeValue[];
             for (const item of itemList) {
                 const { target, value } = item;
                 newState[target] = value;
             }
+            break;
         default:
             break;
     }

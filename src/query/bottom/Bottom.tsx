@@ -2,6 +2,7 @@ import React from 'react';
 import './Bottom.css';
 import { IBottomProps } from '../../interfaces/bottom-props.interface';
 import { OrderTypeEnum } from '../../enum/order-type.enum';
+import BottomModal from './BottomModal';
 
 const Bottom: React.FC<IBottomProps> = (props: IBottomProps) => {
     const {
@@ -13,6 +14,19 @@ const Bottom: React.FC<IBottomProps> = (props: IBottomProps) => {
         setHighSpeed,
         setOnlyTickets,
         setIsFiltersVisible,
+        ticketTypes,
+        trainTypes,
+        departStations,
+        arriveStations,
+        checkedTicketTypes,
+        checkedTrainTypes,
+        checkedDepartStations,
+        checkedArriveStations,
+        departTimeStart,
+        departTimeEnd,
+        arriveTimeStart,
+        arriveTimeEnd,
+        changeValueList,
     } = props;
 
     const toogleOrderTypeEvent = () => {
@@ -50,6 +64,24 @@ const Bottom: React.FC<IBottomProps> = (props: IBottomProps) => {
                     <i className="icon">{isFiltersVisible ? '\uf0f7' : '\uf446'}</i>
                     综合筛选
                 </span>
+            </div>
+            <div>
+                {
+                    isFiltersVisible && <BottomModal ticketTypes={ticketTypes}
+                        trainTypes={trainTypes}
+                        departStations={departStations}
+                        arriveStations={arriveStations}
+                        checkedTicketTypes={checkedTicketTypes}
+                        checkedTrainTypes={checkedTrainTypes}
+                        checkedDepartStations={checkedDepartStations}
+                        checkedArriveStations={checkedArriveStations}
+                        departTimeStart={departTimeStart}
+                        departTimeEnd={departTimeEnd}
+                        arriveTimeStart={arriveTimeStart}
+                        arriveTimeEnd={arriveTimeEnd}
+                        changeValueList={changeValueList}
+                        setIsFiltersVisible={setIsFiltersVisible} />
+                }
             </div>
         </div>
     )
