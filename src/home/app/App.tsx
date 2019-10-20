@@ -23,6 +23,7 @@ const App: React.FC<any> = (props: any) => {
     setSelectedCity,
     departDate,
     isDateSelectorVisible,
+    highSpeed,
   } = props;
 
   const onBack = useCallback(() => {
@@ -35,6 +36,7 @@ const App: React.FC<any> = (props: any) => {
   const loadCityData = useCallback(props.loadCityData, []);
   const showDateSelector = useCallback(props.showDateSelector, []);
   const hideDateSelector = useCallback(props.hideDateSelector, []);
+  const toggleHighSpeed = useCallback(props.toggleHighSpeed, []);
   const setDepartDate = useCallback((day: any) => {
     if (!day) {
       return;
@@ -51,10 +53,10 @@ const App: React.FC<any> = (props: any) => {
       <div className="header-wrapper">
         <Header title="火车票" onBack={onBack}></Header>
       </div>
-      <form className="form">
+      <form className="form" action="./query.html">
         <Journey from={from} to={to} exchangeFromTo={exchangeFromTo} showCitySelector={showCitySelector}></Journey>
         <DepartDate time={departDate} onClick={showDateSelector}></DepartDate>
-        <HighSpeed></HighSpeed>
+        <HighSpeed highSpeed={highSpeed} toogle={toggleHighSpeed} ></HighSpeed>
         <Submit></Submit>
       </form>
       <CitySelector show={isCitySelectorVisible}
@@ -101,6 +103,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
   setDepartDate: (date: any) => {
     dispatch(homeActions.setDepartDate(date));
+  },
+  toggleHighSpeed: (show: any) => {
+    dispatch(homeActions.toggleHighSpeed(show))
   }
 })
 
