@@ -1,11 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import reducers from './reducer';
+import ticketReducer from './reducer';
 import thunk from 'redux-thunk';
 
 export default createStore(
-    combineReducers(reducers),
-    {
-
-    },
+    combineReducers(ticketReducer),
     applyMiddleware(thunk)
 );
