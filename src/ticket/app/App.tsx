@@ -10,6 +10,8 @@ import dayjs from 'dayjs';
 import { clearTime } from '../../functions/date-utils.func';
 import Header from '../../common/header/Header';
 import Nav from '../../common/nav/Nav';
+import Candidate from '../candidate/Candidate';
+import { TrainContext } from '../Context';
 
 const Schedule = lazy(() => import('../schedule/Schedule'));
 
@@ -100,15 +102,23 @@ const App: React.FC<any> = (props: any) => {
           durationStr={durationStr}
           {...detailCbs} />
       </div>
+      <TrainContext.Provider value={{
+        'trainNumber': trainNumber,
+        'dStation': departStation,
+        'aStation': arriveStation,
+        'date': departDate
+      }}>
+        <Candidate tickets={tickets} />
+      </TrainContext.Provider>
       {
         isScheduleVisible && <div className="mask" onClick={() => dispatch(ticketActions.toggleIsScheduleVisible())}>
           <Suspense fallback={<div>loading...</div>}>
             <Schedule date={departDate}
               trainNumber={trainNumber}
               departStation={departStation}
-              arriveStation={arriveStation} 
+              arriveStation={arriveStation}
               scheduleInfo={scheduleInfo}
-              {...scheduleCbs}/>
+              {...scheduleCbs} />
           </Suspense>
         </div>
       }
