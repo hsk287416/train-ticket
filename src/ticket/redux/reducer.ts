@@ -15,6 +15,7 @@ const initialState: ITicket = {
     tickets: [],
     isScheduleVisible: false,
     searchParsed: false,
+    scheduleInfo: [],
 }
 
 const ticketReducer: Reducer<ITicket, AnyAction> = (state: ITicket = initialState, action: AnyAction) => {
@@ -62,6 +63,9 @@ const ticketReducer: Reducer<ITicket, AnyAction> = (state: ITicket = initialStat
             break;
         case ticketActions.ACTION_PREV_DAY:
             newState.departDate = clearTime(newState.departDate).getTime() + 86400 * 1000;
+            break;
+        case ticketActions.ACTION_SET_SCHEDULE_INFO:
+            newState.scheduleInfo = payload;
             break;
         default:
             break;

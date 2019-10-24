@@ -14,6 +14,9 @@ export const ACTION_TOGGLE_IS_SCHEDULE_VISIBLE = 'ACTION_TOGGLE_IS_SCHEDULE_VISI
 export const ACTION_SET_SEARCH_PARSED = 'SET_SEARCH_PARSED';
 export const ACTION_NEXT_DAY = 'ACTION_NEXT_DAY';
 export const ACTION_PREV_DAY = 'ACTION_PREV_DAY';
+export const ACTION_REQUEST_TICKET = 'ACTION_REQUEST_TICKET';
+export const ACTION_REQUEST_SCHEDULE = 'ACTION_REQUEST_SCHEDULE';
+export const ACTION_SET_SCHEDULE_INFO = 'ACTION_SET_SCHEDULE_INFO';
 
 export function setDepartDate(departDate: number) {
     return {
@@ -96,5 +99,25 @@ export function nextDate() {
 export function prevDate() {
     return {
         type: ACTION_PREV_DAY
+    }
+}
+
+export function requestTicket() {
+    return {
+        type: ACTION_REQUEST_TICKET
+    }
+}
+
+export function requestSchedule(params: any) {
+    return {
+        type: ACTION_REQUEST_SCHEDULE,
+        payload: params
+    }
+}
+
+export function setScheduleInfo(info: any) {
+    return {
+        type: ACTION_SET_SCHEDULE_INFO,
+        payload: info
     }
 }

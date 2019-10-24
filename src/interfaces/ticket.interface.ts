@@ -1,3 +1,5 @@
+import { IScheduleInfo } from "./schedule-info.interface";
+
 export interface ITicket {
     departDate: number;
     arriveDate: number;
@@ -10,4 +12,5 @@ export interface ITicket {
     tickets: any[];
     isScheduleVisible: boolean;
     searchParsed: boolean;
+    scheduleInfo: IScheduleInfo[];
 }

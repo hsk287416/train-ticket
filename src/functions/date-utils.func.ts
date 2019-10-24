@@ -1,3 +1,6 @@
+import dayjs from "dayjs";
+import 'dayjs/locale/zh-cn';
+
 /**
  * 获取未来三个月的月份数组
  */
@@ -47,4 +50,10 @@ export const clearTime = (timestamp: any = Date.now()) => {
     target.setSeconds(0);
     target.setMilliseconds(0);
     return target;
+}
+
+export const format = (d: any) => {
+    dayjs.locale('zh-cn');
+    const date = dayjs(d);
+    return date.format('MM-DD  dddd');
 }
