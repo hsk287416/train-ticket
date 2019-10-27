@@ -13,7 +13,6 @@ const Detail: React.FC<IDetail> = (props: IDetail) => {
         departStation,
         arriveStation,
         durationStr,
-        toggleIsScheduleVisible,
     } = props;
 
     const departDateStr = useMemo(() => {
@@ -35,9 +34,7 @@ const Detail: React.FC<IDetail> = (props: IDetail) => {
                 <div className="middle">
                     <p className="train-name">{trainNumber}</p>
                     <p className="train-mid">
-                        <span className="left"></span>
-                        <span className="schedule" onClick={toggleIsScheduleVisible}>时刻表</span>
-                        <span className="right"></span>
+                        {props.children}
                     </p>
                     <p className="train-time">耗时{durationStr}</p>
                 </div>

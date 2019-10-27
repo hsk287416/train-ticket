@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
+import React, { useEffect, useCallback, useMemo, lazy, Suspense, Fragment } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { ITicket } from '../../interfaces/ticket.interface';
@@ -65,17 +65,12 @@ const App: React.FC<any> = (props: any) => {
     }, dispatch);
   }, []);
 
-  const detailCbs = useMemo(() => {
-    return bindActionCreators({
-      'toggleIsScheduleVisible': ticketActions.toggleIsScheduleVisible,
-    }, dispatch);
-  }, []);
-
   const scheduleCbs = useMemo(() => {
     return bindActionCreators({
       'requestSchedule': ticketActions.requestSchedule,
     }, dispatch);
   }, []);
+
 
   if (!searchParsed) {
     return null;
@@ -99,8 +94,11 @@ const App: React.FC<any> = (props: any) => {
           trainNumber={trainNumber}
           departStation={departStation}
           arriveStation={arriveStation}
-          durationStr={durationStr}
-          {...detailCbs} />
+          durationStr={durationStr} >
+          <span className="left"></span>
+          <span className="schedule" onClick={() => ticketActions.toggleIsScheduleVisible()}>时刻表</span>
+          <span className="right"></span>
+        </Detail>
       </div>
       <TrainContext.Provider value={{
         'trainNumber': trainNumber,

@@ -7,5 +7,5 @@ export interface IDetail {
     departStation: string;
     arriveStation: string;
     durationStr: string;
-    toggleIsScheduleVisible: () => void;
+    children: any;
 }
