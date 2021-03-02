@@ -71,7 +71,7 @@
     "typescript": "3.6.4",
     "typescript-fsa": "^3.0.0",
     "typescript-fsa-reducers": "^1.2.1",
-    "urijs": "^1.19.1",
+    "urijs": "^1.19.6",
     "url-loader": "2.1.0",
     "webpack": "4.41.0",
     "webpack-dev-server": "3.2.1",
